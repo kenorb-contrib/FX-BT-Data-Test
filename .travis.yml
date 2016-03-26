@@ -1,0 +1,58 @@
+# Travis CI build configuration config file.
+
+language: python
+python:
+  - "3.4"
+
+addons:
+  apt:
+    packages:
+    - realpath
+
+notifications:
+  email: false
+
+before_install:
+  - env
+install:
+# - pip install -r requirements.txt
+
+before_script:
+  - PATH=${PATH//:\.\/node_modules\/\.bin/}
+
+script:
+  - set -e # This makes build to fail on first error.
+  - make
+
+after_success:
+
+after_failure:
+ - sudo apt-get -qy install tree && - tree -d -L 6 # Print directory structure in the form of a tree.
+ - env
+
+after_script:
+  - pwd
+
+deploy:
+  provider: releases
+  api-key: "GITHUB OAUTH TOKEN"
+  file:
+    - "EURUSD1.hst.gz"
+    - "EURUSD5.hst.gz"
+    - "EURUSD15.hst.gz"
+    - "EURUSD30.hst.gz"
+    - "EURUSD60.hst.gz"
+    - "EURUSD240.hst.gz"
+    - "EURUSD10080.hst.gz"
+    - "EURUSD43200.hst.gz"
+    - "EURUSD1_0.fxt.gz"
+    - "EURUSD5_0.fxt.gz"
+    - "EURUSD15_0.fxt.gz"
+    - "EURUSD30_0.fxt.gz"
+    - "EURUSD60_0.fxt.gz"
+    - "EURUSD240_0.fxt.gz"
+    - "EURUSD10080_0.fxt.gz"
+    - "EURUSD43200_0.fxt.gz"
+  skip_cleanup: true
+  on:
+    tags: true
