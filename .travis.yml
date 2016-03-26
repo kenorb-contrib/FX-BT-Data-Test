@@ -2,7 +2,7 @@
 
 language: python
 python:
-  - "3.4"
+- "3.4"
 
 addons:
   apt:
@@ -13,46 +13,49 @@ notifications:
   email: false
 
 before_install:
-  - env
+- env
+
 install:
 # - pip install -r requirements.txt
 
 before_script:
-  - PATH=${PATH//:\.\/node_modules\/\.bin/}
+- PATH=${PATH//:\.\/node_modules\/\.bin/}
 
 script:
-  - set -e # This makes build to fail on first error.
-  - make
+- set -e # This makes build to fail on first error.
+- make
 
 after_success:
 
 after_failure:
- - sudo apt-get -qy install tree && - tree -d -L 6 # Print directory structure in the form of a tree.
- - env
+- sudo apt-get -qy install tree && - tree -d -L 6 # Print directory structure in the form of a tree.
+- env
 
 after_script:
-  - pwd
+- pwd
 
 deploy:
   provider: releases
-  api-key: "GITHUB OAUTH TOKEN"
+  api_key:
+    secure: TLbBoardPjLQ/mkt0eFIsp/x2etw55t3cb4O2vrxH7ZG4PeeWIK+jBR/9VB/g5HIeSWSB6dwzR9xpmPQHnMy3BZzCZ7dG9cqCD7fIb7eyerhSQRS2/pAsWvlsABArSXbhQyBSDuyX9ze+XaU0XZwYv8Q3QeHwx834uD2Depz8xyunpBrY5IhZcMbtpwfkZCdUShFPSBgqwe2/U7QKzugvmTiKD+4e5RhzoBxTK4BsGeLeP4LoDLwEgELTmWD29uUhLz+DlkqkdHEMLWaarexOKqLX6naBzDEKiAt7Wq6Z7OKIPLrBbcooartZ2WLljstMrzaincyDyAgE4C2ilKgSr0tSkBUGaSvDP9i9MfktkrEZD6xky2uWK90CmBNEgjT9MHJ99wTnFe23Ay5Ci9Is8W7dBSmrtZ+PKO+6UHWa/r8xkERQ/UdgstzS5OkS1CtGwnSaL7Wwh4f49McoVYlPbfqAnhGqEcpg0ik/u3samSXzjZhcqXPqLjgBENK3rHkjzpBviTZSkyxBfZYk3xUzmBHLe+wsSwelOlGdI0AXmkBWbN2czCKnc0m3ceMm+OaRPmlv/uX7cyo97cI1zN+6WPgTZdLlixcn0UqoIuw7Tu4nStJ/Hv2faK9KDC6lY2EcFf3nkIfthh+vQyJlNPni5s6K66FOsunZCzy0b4tHaI=
   file:
-    - "EURUSD1.hst.gz"
-    - "EURUSD5.hst.gz"
-    - "EURUSD15.hst.gz"
-    - "EURUSD30.hst.gz"
-    - "EURUSD60.hst.gz"
-    - "EURUSD240.hst.gz"
-    - "EURUSD10080.hst.gz"
-    - "EURUSD43200.hst.gz"
-    - "EURUSD1_0.fxt.gz"
-    - "EURUSD5_0.fxt.gz"
-    - "EURUSD15_0.fxt.gz"
-    - "EURUSD30_0.fxt.gz"
-    - "EURUSD60_0.fxt.gz"
-    - "EURUSD240_0.fxt.gz"
-    - "EURUSD10080_0.fxt.gz"
-    - "EURUSD43200_0.fxt.gz"
+    - "FOOBAR1.hst.gz"
+    - "FOOBAR5.hst.gz"
+    - "FOOBAR15.hst.gz"
+    - "FOOBAR30.hst.gz"
+    - "FOOBAR60.hst.gz"
+    - "FOOBAR240.hst.gz"
+    - "FOOBAR10080.hst.gz"
+    - "FOOBAR43200.hst.gz"
+    - "FOOBAR1_0.fxt.gz"
+    - "FOOBAR5_0.fxt.gz"
+    - "FOOBAR15_0.fxt.gz"
+    - "FOOBAR30_0.fxt.gz"
+    - "FOOBAR60_0.fxt.gz"
+    - "FOOBAR240_0.fxt.gz"
+    - "FOOBAR10080_0.fxt.gz"
+    - "FOOBAR43200_0.fxt.gz"
   skip_cleanup: true
   on:
+    repo: FX31337/FX-BT-Data-Test
     tags: true
